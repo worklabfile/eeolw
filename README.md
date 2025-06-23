@@ -1,73 +1,82 @@
-# Welcome to your Lovable project
+# Веб-приложение для музыкальной группы
 
-## Project info
+Современное веб-приложение для музыкальной группы, разработанное с использованием React, TypeScript и современных веб-технологий.
 
-**URL**: https://lovable.dev/projects/50878434-d695-420b-98f2-2756af1044c1
+## Описание проекта
 
-## How can I edit this code?
+Данное приложение представляет собой официальный сайт музыкальной группы с функциональностью для представления группы, их музыки, туров и покупки билетов.
 
-There are several ways of editing your application.
+## Технологический стек
 
-**Use Lovable**
+- **React 18.3.1** - основная библиотека для создания пользовательского интерфейса
+- **TypeScript 5.5.3** - типизированный JavaScript для повышения надежности кода
+- **Vite 5.4.1** - современный инструмент сборки для быстрой разработки
+- **Tailwind CSS 3.4.11** - утилитарный CSS фреймворк для стилизации
+- **shadcn/ui** - набор переиспользуемых компонентов на основе Radix UI
+- **React Router DOM 6.26.2** - маршрутизация в приложении
+- **Supabase 2.49.6** - backend-as-a-service для базы данных
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/50878434-d695-420b-98f2-2756af1044c1) and start prompting.
+## Установка и запуск
 
-Changes made via Lovable will be committed automatically to this repo.
+### Требования
+- Node.js (версия 18 или выше)
+- npm или yarn
 
-**Use your preferred IDE**
+### Шаги установки
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# Клонирование репозитория
+git clone <URL_РЕПОЗИТОРИЯ>
+cd <НАЗВАНИЕ_ПРОЕКТА>
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# Установка зависимостей
+npm install
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Запуск в режиме разработки
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Доступные скрипты
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `npm run dev` - запуск сервера разработки
+- `npm run build` - сборка проекта для продакшена
+- `npm run build:dev` - сборка проекта в режиме разработки
+- `npm run lint` - проверка кода с помощью ESLint
+- `npm run preview` - предварительный просмотр собранного проекта
 
-**Use GitHub Codespaces**
+## Структура проекта
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+src/
+├── pages/          # Страницы приложения
+├── components/     # Переиспользуемые компоненты
+│   ├── ui/        # Базовые UI компоненты
+│   ├── layout/    # Компоненты макета
+│   └── home/      # Компоненты главной страницы
+├── lib/           # Утилиты и хелперы
+├── hooks/         # Кастомные React хуки
+└── integrations/  # Интеграции с API
+```
 
-## What technologies are used for this project?
+## Основные функции
 
-This project is built with:
+- **Главная страница** - приветствие и навигация
+- **О группе** - биография и история группы
+- **Музыка** - альбомы, треки, аудиоплеер
+- **Туры** - расписание концертов
+- **Покупка билетов** - форма заказа с выбором места
+- **Контакты** - форма обратной связи
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Особенности реализации
 
-## How can I deploy this project?
+- Компонентная архитектура React
+- Строгая типизация TypeScript
+- Адаптивный дизайн
+- Современные UI компоненты
+- Интеграция с backend сервисом
+- Оптимизированная производительность
 
-Simply open [Lovable](https://lovable.dev/projects/50878434-d695-420b-98f2-2756af1044c1) and click on Share -> Publish.
+## Автор
 
-## Can I connect a custom domain to my Lovable project?
+Разработано в рамках курсовой работы по веб-разработке.
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
