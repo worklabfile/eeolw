@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -121,24 +120,8 @@ const TicketPurchase = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    try {
-      // Сохранение данных о заказе в Supabase
-      const { error } = await supabase
-        .from('ticket_orders')
-        .insert([{
-          full_name: formData.fullName,
-          email: formData.email,
-          phone_number: formData.phoneNumber,
-          show_id: parseInt(showId || "0"),
-          ticket_type: selectedTicketType,
-          quantity: quantity,
-          total_price: calculateTotal()
-        }]);
-      
-      if (error) throw error;
-      
-      // Перенаправление на страницу успешного заказа
+    // Имитация оформления заказа на фронте
+    setTimeout(() => {
       navigate("/tickets/success", { 
         state: { 
           showData,
@@ -148,16 +131,8 @@ const TicketPurchase = () => {
           purchaserName: formData.fullName
         } 
       });
-    } catch (error) {
-      console.error("Ошибка при оформлении заказа:", error);
-      toast({
-        title: "Ошибка",
-        description: "Произошла ошибка при оформлении заказа. Пожалуйста, попробуйте позже.",
-        variant: "destructive"
-      });
-    } finally {
       setIsSubmitting(false);
-    }
+    }, 1000);
   };
 
   if (loading) {

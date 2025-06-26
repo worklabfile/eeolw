@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -25,37 +24,20 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    try {
-      // Отправка данных в Supabase
-      const { error } = await supabase
-        .from('contact_messages')
-        .insert([formData]);
-        
-      if (error) throw error;
-      
+    // Имитация отправки сообщения на фронте
+    setTimeout(() => {
       toast({
         title: "Сообщение отправлено",
         description: "Ваше сообщение было отправлено руководству eeolw. Мы свяжемся с вами в ближайшее время!",
       });
-      
-      // Очистка формы
       setFormData({
         name: "",
         email: "",
         subject: "",
         message: ""
       });
-    } catch (error) {
-      console.error("Ошибка при отправке сообщения:", error);
-      toast({
-        title: "Ошибка",
-        description: "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.",
-        variant: "destructive"
-      });
-    } finally {
       setIsSubmitting(false);
-    }
+    }, 1000);
   };
 
   return (
