@@ -50,7 +50,7 @@ const TicketPurchase = () => {
     const shows = [
       {
         id: 1,
-        date: "15 июня, 2025",
+        date: "27 июля, 2025",  
         city: "Ульяновск",
         venue: "Клуб Волга",
         address: "ул. Ленина, 10, Ульяновск",

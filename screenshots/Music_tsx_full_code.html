@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полный код файла: Music.tsx</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #252526;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header {
+            background: #2d2d30;
+            padding: 15px 20px;
+            border-bottom: 1px solid #3e3e42;
+        }
+        
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        
+        .description {
+            font-size: 14px;
+            color: #cccccc;
+            line-height: 1.4;
+        }
+        
+        .code-container {
+            padding: 20px;
+            overflow-x: auto;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .code {
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre;
+            color: #d4d4d4;
+        }
+        
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; }
+        .function { color: #dcdcaa; }
+        .number { color: #b5cea8; }
+        .operator { color: #d4d4d4; }
+        
+        .file-info {
+            background: #007acc;
+            color: white;
+            padding: 8px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .language-badge {
+            background: #007acc;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .line-count {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+        
+        /* Стилизация скроллбара */
+        .code-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        .code-container::-webkit-scrollbar-track {
+            background: #2d2d30;
+        }
+        
+        .code-container::-webkit-scrollbar-thumb {
+            background: #3e3e42;
+            border-radius: 4px;
+        }
+        
+        .code-container::-webkit-scrollbar-thumb:hover {
+            background: #4e4e52;
+        }
+        
+        /* Подсветка синтаксиса для разных языков */
+        .json .string { color: #ce9178; }
+        .json .number { color: #b5cea8; }
+        .json .boolean { color: #569cd6; }
+        .json .null { color: #569cd6; }
+        
+        .typescript .keyword { color: #569cd6; }
+        .typescript .string { color: #ce9178; }
+        .typescript .comment { color: #6a9955; }
+        .typescript .function { color: #dcdcaa; }
+        .typescript .number { color: #b5cea8; }
+        .typescript .operator { color: #d4d4d4; }
+        
+        .css .selector { color: #d7ba7d; }
+        .css .property { color: #9cdcfe; }
+        .css .value { color: #ce9178; }
+        .css .comment { color: #6a9955; }
+        
+        .markdown .heading { color: #569cd6; }
+        .markdown .bold { color: #dcdcaa; }
+        .markdown .italic { color: #dcdcaa; }
+        .markdown .code { color: #ce9178; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">
+                Полный код файла: Music.tsx
+                <span class="language-badge">TYPESCRIPT</span>
+            </div>
+            <div class="description">Страница с альбомами и аудиоплеером</div>
+        </div>
+        <div class="file-info">
+            <span>Полный код файла</span>
+            <span class="line-count">132 строк</span>
+        </div>
+        <div class="code-container">
+            <pre class="code typescript">
+import { useState } from &quot;react&quot;;
+import MainLayout from &quot;@/components/layout/MainLayout&quot;;
+import Section from &quot;@/components/ui/Section&quot;;
+import SectionTitle from &quot;@/components/ui/SectionTitle&quot;;
+
+const Music = () =&gt; {
+  const albums = [
+    {
+      id: 1,
+      title: &quot;ТЕМНАЯ АНДЖЕЛА&quot;,
+      year: &quot;2025&quot;,
+      cover: &quot;/album1.svg&quot;,
+      type: &quot;Альбом&quot;,
+      tracks: [
+        { id: 1, title: &quot;ЗАПОМНИ&quot;, duration: &quot;2:14&quot; },
+        { id: 2, title: &quot;ИНВЕРСИЯ (feat. gu1vazZ)&quot;, duration: &quot;2:33&quot; },
+        { id: 3, title: &quot;ПРОСТО&quot;, duration: &quot;2:17&quot; },
+        { id: 4, title: &quot;МОДЕЛЬ (feat. 3pleOpium)&quot;, duration: &quot;2:31&quot; }
+      ]
+    },
+    {
+      id: 2,
+      title: &quot;HANDYCAM&quot;,
+      year: &quot;2025&quot;,
+      cover: &quot;/album2.svg&quot;,
+      type: &quot;Сингл&quot;,
+      tracks: [
+        { id: 1, title: &quot;HANDYCAM (feat. gu1vazZ, Lonewj)&quot;, duration: &quot;2:19&quot; }
+      ]
+    },
+    {
+      id: 3,
+      title: &quot;ИНСТИНКТ&quot;,
+      year: &quot;2025&quot;,
+      cover: &quot;/album3.svg&quot;,
+      type: &quot;Сингл&quot;,
+      tracks: [
+        { id: 1, title: &quot;ИНСТИНКТ&quot;, duration: &quot;1:43&quot; }
+      ]
+    }
+  ];
+
+  const [selectedAlbum, setSelectedAlbum] = useState(albums[0]);
+
+  return (
+    &lt;MainLayout&gt;
+      &lt;div className=&quot;pt-16 bg-black noise-bg&quot;&gt;
+        &lt;Section&gt;
+          &lt;SectionTitle subtitle=&quot;Исследуйте музыку eeolw&quot;&gt;
+            МУЗЫКА
+          &lt;/SectionTitle&gt; 
+          
+          &lt;div className=&quot;grid grid-cols-1 md:grid-cols-3 gap-8 mb-12&quot;&gt;
+            {albums.map((album) =&gt; (
+              &lt;button
+                key={album.id}
+                className={`group text-left hover-glow transition-all ${
+                  selectedAlbum.id === album.id 
+                    ? &quot;ring-1 ring-white&quot; 
+                    : &quot;opacity-70 hover:opacity-100&quot;
+                }`}
+                onClick={() =&gt; setSelectedAlbum(album)}
+              &gt;
+                &lt;div className=&quot;aspect-square bg-black mb-4&quot;&gt;
+                  &lt;img 
+                    src={album.cover} 
+                    alt={`${album.title} cover`} 
+                    className=&quot;w-full h-full object-cover&quot;
+                  /&gt;
+                &lt;/div&gt;
+                &lt;h3 className=&quot;font-mono text-lg font-bold group-hover:text-white transition-colors&quot;&gt;
+                  {album.title}
+                &lt;/h3&gt;
+                &lt;p className=&quot;text-gray-400&quot;&gt;
+                  {album.type} • {album.year}
+                &lt;/p&gt;
+              &lt;/button&gt;
+            ))}
+          &lt;/div&gt;
+          
+          &lt;div className=&quot;bg-secondary p-6 text-left&quot;&gt;
+            &lt;div className=&quot;flex flex-col md:flex-row gap-8 items-start&quot;&gt;
+              &lt;div className=&quot;w-full md:w-1/3&quot;&gt;
+                &lt;div className=&quot;aspect-square bg-black hover-glow&quot;&gt;
+                  &lt;img 
+                    src={selectedAlbum.cover} 
+                    alt={`${selectedAlbum.title} cover`} 
+                    className=&quot;w-full h-full object-cover&quot;
+                  /&gt;
+                &lt;/div&gt;
+                
+                &lt;div className=&quot;mt-4&quot;&gt;
+                  &lt;h3 className=&quot;font-mono text-xl font-bold&quot;&gt;{selectedAlbum.title}&lt;/h3&gt;
+                  &lt;p className=&quot;text-gray-400&quot;&gt;
+                    {selectedAlbum.type} • {selectedAlbum.year}
+                  &lt;/p&gt;
+                  
+                  &lt;div className=&quot;mt-4 flex space-x-3&quot;&gt;
+                    &lt;a href=&quot;https://vk.com/artist/8853322076400198659&quot; className=&quot;text-white hover:text-gray-300 transition-colors&quot;&gt;VK Музыка&lt;/a&gt;
+                    &lt;a href=&quot;https://music.yandex.ru/artist/21742277?utm_medium=copy_link&quot; className=&quot;text-white hover:text-gray-300 transition-colors&quot;&gt;Яндекс Музыка&lt;/a&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              
+              &lt;div className=&quot;flex-1&quot;&gt;
+                &lt;h4 className=&quot;font-mono text-lg mb-4&quot;&gt;Трэклист&lt;/h4&gt;
+                &lt;div className=&quot;space-y-1&quot;&gt;
+                  {selectedAlbum.tracks.map((track) =&gt; (
+                    &lt;div 
+                      key={track.id} 
+                      className=&quot;track-item flex justify-between items-center&quot;
+                    &gt;
+                      &lt;div className=&quot;flex items-center gap-3&quot;&gt;
+                        &lt;span className=&quot;text-gray-500&quot;&gt;{track.id}.&lt;/span&gt;
+                        &lt;span&gt;{track.title}&lt;/span&gt;
+                      &lt;/div&gt;
+                      &lt;span className=&quot;text-gray-400&quot;&gt;{track.duration}&lt;/span&gt;
+                    &lt;/div&gt;
+                  ))}
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/Section&gt;
+      &lt;/div&gt;
+    &lt;/MainLayout&gt;
+  );
+};
+
+export default Music;
+</pre>
+        </div>
+    </div>
+</body>
+</html>

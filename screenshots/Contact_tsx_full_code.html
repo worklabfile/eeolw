@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полный код файла: Contact.tsx</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #252526;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header {
+            background: #2d2d30;
+            padding: 15px 20px;
+            border-bottom: 1px solid #3e3e42;
+        }
+        
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        
+        .description {
+            font-size: 14px;
+            color: #cccccc;
+            line-height: 1.4;
+        }
+        
+        .code-container {
+            padding: 20px;
+            overflow-x: auto;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .code {
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre;
+            color: #d4d4d4;
+        }
+        
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; }
+        .function { color: #dcdcaa; }
+        .number { color: #b5cea8; }
+        .operator { color: #d4d4d4; }
+        
+        .file-info {
+            background: #007acc;
+            color: white;
+            padding: 8px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .language-badge {
+            background: #007acc;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .line-count {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+        
+        /* Стилизация скроллбара */
+        .code-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        .code-container::-webkit-scrollbar-track {
+            background: #2d2d30;
+        }
+        
+        .code-container::-webkit-scrollbar-thumb {
+            background: #3e3e42;
+            border-radius: 4px;
+        }
+        
+        .code-container::-webkit-scrollbar-thumb:hover {
+            background: #4e4e52;
+        }
+        
+        /* Подсветка синтаксиса для разных языков */
+        .json .string { color: #ce9178; }
+        .json .number { color: #b5cea8; }
+        .json .boolean { color: #569cd6; }
+        .json .null { color: #569cd6; }
+        
+        .typescript .keyword { color: #569cd6; }
+        .typescript .string { color: #ce9178; }
+        .typescript .comment { color: #6a9955; }
+        .typescript .function { color: #dcdcaa; }
+        .typescript .number { color: #b5cea8; }
+        .typescript .operator { color: #d4d4d4; }
+        
+        .css .selector { color: #d7ba7d; }
+        .css .property { color: #9cdcfe; }
+        .css .value { color: #ce9178; }
+        .css .comment { color: #6a9955; }
+        
+        .markdown .heading { color: #569cd6; }
+        .markdown .bold { color: #dcdcaa; }
+        .markdown .italic { color: #dcdcaa; }
+        .markdown .code { color: #ce9178; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">
+                Полный код файла: Contact.tsx
+                <span class="language-badge">TYPESCRIPT</span>
+            </div>
+            <div class="description">Контактная страница с формой обратной связи</div>
+        </div>
+        <div class="file-info">
+            <span>Полный код файла</span>
+            <span class="line-count">183 строк</span>
+        </div>
+        <div class="code-container">
+            <pre class="code typescript">
+import { useState } from &quot;react&quot;;
+import { Button } from &quot;@/components/ui/button&quot;;
+import { useToast } from &quot;@/components/ui/use-toast&quot;;
+import MainLayout from &quot;@/components/layout/MainLayout&quot;;
+import Section from &quot;@/components/ui/Section&quot;;
+import SectionTitle from &quot;@/components/ui/SectionTitle&quot;;
+import { supabase } from &quot;@/integrations/supabase/client&quot;;
+
+const Contact = () =&gt; {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: &quot;&quot;,
+    email: &quot;&quot;,
+    subject: &quot;&quot;,
+    message: &quot;&quot;
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent&lt;HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement&gt;) =&gt; {
+    const { name, value } = e.target;
+    setFormData(prev =&gt; ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) =&gt; {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Отправка данных в Supabase
+      const { error } = await supabase
+        .from(&#039;contact_messages&#039;)
+        .insert([formData]);
+        
+      if (error) throw error;
+      
+      toast({
+        title: &quot;Сообщение отправлено&quot;,
+        description: &quot;Ваше сообщение было отправлено руководству eeolw. Мы свяжемся с вами в ближайшее время!&quot;,
+      });
+      
+      // Очистка формы
+      setFormData({
+        name: &quot;&quot;,
+        email: &quot;&quot;,
+        subject: &quot;&quot;,
+        message: &quot;&quot;
+      });
+    } catch (error) {
+      console.error(&quot;Ошибка при отправке сообщения:&quot;, error);
+      toast({
+        title: &quot;Ошибка&quot;,
+        description: &quot;Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.&quot;,
+        variant: &quot;destructive&quot;
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    &lt;MainLayout&gt;
+      &lt;div className=&quot;pt-16 bg-black noise-bg&quot;&gt;
+        &lt;Section&gt;
+          &lt;SectionTitle subtitle=&quot;Свяжитесь с менеджментом eeolw&quot;&gt;
+            КОНТАКТЫ
+          &lt;/SectionTitle&gt;
+          
+          &lt;div className=&quot;grid grid-cols-1 md:grid-cols-2 gap-12&quot;&gt;
+            &lt;div className=&quot;text-left space-y-6&quot;&gt;
+              &lt;h3 className=&quot;font-mono text-xl font-bold&quot;&gt;КОНТАКТНАЯ ИНФОРМАЦИЯ&lt;/h3&gt;
+              &lt;p className=&quot;text-gray-300&quot;&gt;
+                По вопросам организации концертов, прессы или общих вопросов, используйте форму или свяжитесь с нами напрямую:
+              &lt;/p&gt;
+              
+              &lt;div className=&quot;space-y-3&quot;&gt;
+                &lt;p className=&quot;text-gray-300&quot;&gt;
+                  &lt;span className=&quot;font-bold&quot;&gt;Почта:&lt;/span&gt;{&quot; &quot;}
+                  &lt;a href=&quot;mailto:management@eeolw.com&quot; className=&quot;text-white hover:underline&quot;&gt;
+                    management@eeolw.com
+                  &lt;/a&gt;
+                &lt;/p&gt;
+                &lt;p className=&quot;text-gray-300&quot;&gt;
+                  &lt;span className=&quot;font-bold&quot;&gt;Расположение:&lt;/span&gt; Ульяновск, Россия
+                &lt;/p&gt;
+              &lt;/div&gt;
+              
+              &lt;div className=&quot;pt-4&quot;&gt;
+                &lt;h3 className=&quot;font-mono text-xl font-bold mb-3&quot;&gt;СОЦСЕТИ&lt;/h3&gt;
+                &lt;div className=&quot;flex space-x-4&quot;&gt;
+                  &lt;a href=&quot;https://vk.com/artist/8853322076400198659&quot; className=&quot;text-white hover:text-gray-300 transition-colors&quot;&gt;ВКонтакте&lt;/a&gt;
+                  &lt;a href=&quot;https://t.me/eeolw&quot; className=&quot;text-white hover:text-gray-300 transition-colors&quot;&gt;Telegram&lt;/a&gt;
+                  &lt;a href=&quot;https://music.yandex.ru/artist/21742277?utm_medium=copy_link&quot; className=&quot;text-white hover:text-gray-300 transition-colors&quot;&gt;Yandex Music&lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;div className=&quot;bg-secondary p-6&quot;&gt;
+              &lt;h3 className=&quot;font-mono text-xl font-bold mb-4 text-left&quot;&gt;ОТПРАВИТЬ СООБЩЕНИЕ&lt;/h3&gt;
+              &lt;form onSubmit={handleSubmit} className=&quot;space-y-4&quot;&gt;
+                &lt;div className=&quot;text-left&quot;&gt;
+                  &lt;label htmlFor=&quot;name&quot; className=&quot;block text-sm font-medium text-gray-400 mb-1&quot;&gt;
+                    Имя
+                  &lt;/label&gt;
+                  &lt;input
+                    type=&quot;text&quot;
+                    id=&quot;name&quot;
+                    name=&quot;name&quot;
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className=&quot;w-full p-2 bg-black/50 border border-white/20 text-white focus:outline-none focus:ring-1 focus:ring-white&quot;
+                  /&gt;
+                &lt;/div&gt;
+                
+                &lt;div className=&quot;text-left&quot;&gt;
+                  &lt;label htmlFor=&quot;email&quot; className=&quot;block text-sm font-medium text-gray-400 mb-1&quot;&gt;
+                    Email
+                  &lt;/label&gt;
+                  &lt;input
+                    type=&quot;email&quot;
+                    id=&quot;email&quot;
+                    name=&quot;email&quot;
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className=&quot;w-full p-2 bg-black/50 border border-white/20 text-white focus:outline-none focus:ring-1 focus:ring-white&quot;
+                  /&gt;
+                &lt;/div&gt;
+                
+                &lt;div className=&quot;text-left&quot;&gt;
+                  &lt;label htmlFor=&quot;subject&quot; className=&quot;block text-sm font-medium text-gray-400 mb-1&quot;&gt;
+                    Тема
+                  &lt;/label&gt;
+                  &lt;select
+                    id=&quot;subject&quot;
+                    name=&quot;subject&quot;
+                    required
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className=&quot;w-full p-2 bg-black/50 border border-white/20 text-white focus:outline-none focus:ring-1 focus:ring-white&quot;
+                  &gt;
+                    &lt;option value=&quot;&quot;&gt;Выберите тему&lt;/option&gt;
+                    &lt;option value=&quot;Booking&quot;&gt;Организация концерта&lt;/option&gt;
+                    &lt;option value=&quot;Press&quot;&gt;Пресса&lt;/option&gt;
+                    &lt;option value=&quot;General&quot;&gt;Общий вопрос&lt;/option&gt;
+                    &lt;option value=&quot;Other&quot;&gt;Другое&lt;/option&gt;
+                  &lt;/select&gt;
+                &lt;/div&gt;
+                
+                &lt;div className=&quot;text-left&quot;&gt;
+                  &lt;label htmlFor=&quot;message&quot; className=&quot;block text-sm font-medium text-gray-400 mb-1&quot;&gt;
+                    Сообщение
+                  &lt;/label&gt;
+                  &lt;textarea
+                    id=&quot;message&quot;
+                    name=&quot;message&quot;
+                    required
+                    rows={5}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className=&quot;w-full p-2 bg-black/50 border border-white/20 text-white focus:outline-none focus:ring-1 focus:ring-white&quot;
+                  &gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+                
+                &lt;Button 
+                  type=&quot;submit&quot; 
+                  className=&quot;w-full bg-white text-black hover:bg-gray-200&quot;
+                  disabled={isSubmitting}
+                &gt;
+                  {isSubmitting ? &quot;ОТПРАВКА...&quot; : &quot;ОТПРАВИТЬ СООБЩЕНИЕ&quot;}
+                &lt;/Button&gt;
+              &lt;/form&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/Section&gt;
+      &lt;/div&gt;
+    &lt;/MainLayout&gt;
+  );
+};
+
+export default Contact;
+</pre>
+        </div>
+    </div>
+</body>
+</html>

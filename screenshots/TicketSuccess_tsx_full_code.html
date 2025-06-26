@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полный код файла: TicketSuccess.tsx</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #252526;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header {
+            background: #2d2d30;
+            padding: 15px 20px;
+            border-bottom: 1px solid #3e3e42;
+        }
+        
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        
+        .description {
+            font-size: 14px;
+            color: #cccccc;
+            line-height: 1.4;
+        }
+        
+        .code-container {
+            padding: 20px;
+            overflow-x: auto;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .code {
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre;
+            color: #d4d4d4;
+        }
+        
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; }
+        .function { color: #dcdcaa; }
+        .number { color: #b5cea8; }
+        .operator { color: #d4d4d4; }
+        
+        .file-info {
+            background: #007acc;
+            color: white;
+            padding: 8px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .language-badge {
+            background: #007acc;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .line-count {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+        
+        /* Стилизация скроллбара */
+        .code-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        .code-container::-webkit-scrollbar-track {
+            background: #2d2d30;
+        }
+        
+        .code-container::-webkit-scrollbar-thumb {
+            background: #3e3e42;
+            border-radius: 4px;
+        }
+        
+        .code-container::-webkit-scrollbar-thumb:hover {
+            background: #4e4e52;
+        }
+        
+        /* Подсветка синтаксиса для разных языков */
+        .json .string { color: #ce9178; }
+        .json .number { color: #b5cea8; }
+        .json .boolean { color: #569cd6; }
+        .json .null { color: #569cd6; }
+        
+        .typescript .keyword { color: #569cd6; }
+        .typescript .string { color: #ce9178; }
+        .typescript .comment { color: #6a9955; }
+        .typescript .function { color: #dcdcaa; }
+        .typescript .number { color: #b5cea8; }
+        .typescript .operator { color: #d4d4d4; }
+        
+        .css .selector { color: #d7ba7d; }
+        .css .property { color: #9cdcfe; }
+        .css .value { color: #ce9178; }
+        .css .comment { color: #6a9955; }
+        
+        .markdown .heading { color: #569cd6; }
+        .markdown .bold { color: #dcdcaa; }
+        .markdown .italic { color: #dcdcaa; }
+        .markdown .code { color: #ce9178; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">
+                Полный код файла: TicketSuccess.tsx
+                <span class="language-badge">TYPESCRIPT</span>
+            </div>
+            <div class="description">Страница подтверждения успешной покупки</div>
+        </div>
+        <div class="file-info">
+            <span>Полный код файла</span>
+            <span class="line-count">109 строк</span>
+        </div>
+        <div class="code-container">
+            <pre class="code typescript">
+import { useEffect } from &quot;react&quot;;
+import { useLocation, useNavigate, Link } from &quot;react-router-dom&quot;;
+import { Button } from &quot;@/components/ui/button&quot;;
+import MainLayout from &quot;@/components/layout/MainLayout&quot;;
+import Section from &quot;@/components/ui/Section&quot;;
+import SectionTitle from &quot;@/components/ui/SectionTitle&quot;;
+
+const TicketSuccess = () =&gt; {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const purchaseData = location.state;
+
+  useEffect(() =&gt; {
+    // Если пользователь перешел на эту страницу напрямую без данных о покупке, редирект на страницу концертов
+    if (!purchaseData) {
+      navigate(&quot;/tour&quot;);
+    }
+  }, [purchaseData, navigate]);
+
+  if (!purchaseData) {
+    return null;
+  }
+
+  return (
+    &lt;MainLayout&gt;
+      &lt;div className=&quot;pt-16 bg-black noise-bg&quot;&gt;
+        &lt;Section&gt;
+          &lt;div className=&quot;max-w-2xl mx-auto&quot;&gt;
+            &lt;SectionTitle&gt;БИЛЕТЫ КУПЛЕНЫ!&lt;/SectionTitle&gt;
+            
+            &lt;div className=&quot;bg-secondary p-8 text-left mb-8 border border-white/20&quot;&gt;
+              &lt;div className=&quot;mb-8 text-center&quot;&gt;
+                &lt;div className=&quot;inline-block p-4 rounded-full bg-white/5 mb-4&quot;&gt;
+                  &lt;svg 
+                    xmlns=&quot;http://www.w3.org/2000/svg&quot; 
+                    width=&quot;48&quot; 
+                    height=&quot;48&quot; 
+                    viewBox=&quot;0 0 24 24&quot; 
+                    fill=&quot;none&quot; 
+                    stroke=&quot;currentColor&quot; 
+                    strokeWidth=&quot;2&quot; 
+                    strokeLinecap=&quot;round&quot; 
+                    strokeLinejoin=&quot;round&quot;
+                  &gt;
+                    &lt;path d=&quot;M22 11.08V12a10 10 0 1 1-5.93-9.14&quot;&gt;&lt;/path&gt;
+                    &lt;polyline points=&quot;22 4 12 14.01 9 11.01&quot;&gt;&lt;/polyline&gt;
+                  &lt;/svg&gt;
+                &lt;/div&gt;
+                &lt;h3 className=&quot;font-mono text-xl font-bold&quot;&gt;Спасибо за покупку!&lt;/h3&gt;
+                &lt;p className=&quot;text-gray-400 mt-2&quot;&gt;Ваши БИЛЕТЫ отправлены на ваш email.&lt;/p&gt;
+              &lt;/div&gt;
+              
+              &lt;div className=&quot;border-b border-white/10 pb-4 mb-4&quot;&gt;
+                &lt;h4 className=&quot;font-mono text-lg mb-3&quot;&gt;ДЕТАЛИ ЗАКАЗА&lt;/h4&gt;
+                &lt;p className=&quot;text-xl mb-1&quot;&gt;{purchaseData.showData.city}&lt;/p&gt;
+                &lt;p className=&quot;text-gray-300&quot;&gt;{purchaseData.showData.venue}&lt;/p&gt;
+                &lt;p className=&quot;text-gray-400&quot;&gt;{purchaseData.showData.address}&lt;/p&gt;
+                &lt;p className=&quot;text-gray-300 mt-2 font-mono&quot;&gt;{purchaseData.showData.date}&lt;/p&gt;
+              &lt;/div&gt;
+              
+              &lt;div className=&quot;border-b border-white/10 pb-4 mb-4&quot;&gt;
+                &lt;h4 className=&quot;font-mono text-lg mb-3&quot;&gt;ИНФОРМАЦИЯ О БИЛЕТАХ&lt;/h4&gt;
+                &lt;p&gt;
+                  &lt;span className=&quot;text-gray-400&quot;&gt;Тип билета:&lt;/span&gt;{&quot; &quot;}
+                  &lt;span className=&quot;font-semibold&quot;&gt;{purchaseData.ticketType.name}&lt;/span&gt;
+                &lt;/p&gt;
+                &lt;p&gt;
+                  &lt;span className=&quot;text-gray-400&quot;&gt;Количество:&lt;/span&gt;{&quot; &quot;}
+                  &lt;span className=&quot;font-semibold&quot;&gt;{purchaseData.quantity}&lt;/span&gt;
+                &lt;/p&gt;
+                &lt;p&gt;
+                  &lt;span className=&quot;text-gray-400&quot;&gt;Покупатель:&lt;/span&gt;{&quot; &quot;}
+                  &lt;span className=&quot;font-semibold&quot;&gt;{purchaseData.purchaserName}&lt;/span&gt;
+                &lt;/p&gt;
+                &lt;p className=&quot;mt-3 font-bold&quot;&gt;
+                  &lt;span className=&quot;text-gray-400&quot;&gt;Итого оплачено:&lt;/span&gt;{&quot; &quot;}
+                  &lt;span&gt;{purchaseData.total} ₽&lt;/span&gt;
+                &lt;/p&gt;
+              &lt;/div&gt;
+              
+              &lt;div&gt;
+                &lt;h4 className=&quot;font-mono text-lg mb-3&quot;&gt;ВАЖНАЯ ИНФОРМАЦИЯ&lt;/h4&gt;
+                &lt;ul className=&quot;list-disc list-inside text-gray-300 space-y-2&quot;&gt;
+                  &lt;li&gt;Пожалуйста, приходите минимум за 30 минут до начала мероприятия.&lt;/li&gt;
+                  &lt;li&gt;Возьмите с собой удостоверение личности, соответствующее имени покупателя.&lt;/li&gt;
+                  &lt;li&gt;Покажите электронный билет на входе (распечатанный или на телефоне).&lt;/li&gt;
+                  &lt;li&gt;БИЛЕТЫ не подлежат возврату.&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;div className=&quot;flex flex-col sm:flex-row gap-4 justify-center&quot;&gt;
+              &lt;Button asChild className=&quot;bg-white text-black hover:bg-gray-200&quot;&gt;
+                &lt;Link to=&quot;/tour&quot;&gt;ВЕРНУТЬСЯ К КОНЦЕРТАМ&lt;/Link&gt;
+              &lt;/Button&gt;
+              &lt;Button asChild variant=&quot;outline&quot; className=&quot;border-white text-white hover:bg-white/10&quot;&gt;
+                &lt;Link to=&quot;/&quot;&gt;НА ГЛАВНУЮ&lt;/Link&gt;
+              &lt;/Button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/Section&gt;
+      &lt;/div&gt;
+    &lt;/MainLayout&gt;
+  );
+};
+
+export default TicketSuccess;
+</pre>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полный код файла: README.md</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #252526;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header {
+            background: #2d2d30;
+            padding: 15px 20px;
+            border-bottom: 1px solid #3e3e42;
+        }
+        
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        
+        .description {
+            font-size: 14px;
+            color: #cccccc;
+            line-height: 1.4;
+        }
+        
+        .code-container {
+            padding: 20px;
+            overflow-x: auto;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .code {
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre;
+            color: #d4d4d4;
+        }
+        
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; }
+        .function { color: #dcdcaa; }
+        .number { color: #b5cea8; }
+        .operator { color: #d4d4d4; }
+        
+        .file-info {
+            background: #007acc;
+            color: white;
+            padding: 8px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .language-badge {
+            background: #007acc;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .line-count {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+        
+        /* Стилизация скроллбара */
+        .code-container::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        .code-container::-webkit-scrollbar-track {
+            background: #2d2d30;
+        }
+        
+        .code-container::-webkit-scrollbar-thumb {
+            background: #3e3e42;
+            border-radius: 4px;
+        }
+        
+        .code-container::-webkit-scrollbar-thumb:hover {
+            background: #4e4e52;
+        }
+        
+        /* Подсветка синтаксиса для разных языков */
+        .json .string { color: #ce9178; }
+        .json .number { color: #b5cea8; }
+        .json .boolean { color: #569cd6; }
+        .json .null { color: #569cd6; }
+        
+        .typescript .keyword { color: #569cd6; }
+        .typescript .string { color: #ce9178; }
+        .typescript .comment { color: #6a9955; }
+        .typescript .function { color: #dcdcaa; }
+        .typescript .number { color: #b5cea8; }
+        .typescript .operator { color: #d4d4d4; }
+        
+        .css .selector { color: #d7ba7d; }
+        .css .property { color: #9cdcfe; }
+        .css .value { color: #ce9178; }
+        .css .comment { color: #6a9955; }
+        
+        .markdown .heading { color: #569cd6; }
+        .markdown .bold { color: #dcdcaa; }
+        .markdown .italic { color: #dcdcaa; }
+        .markdown .code { color: #ce9178; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">
+                Полный код файла: README.md
+                <span class="language-badge">MARKDOWN</span>
+            </div>
+            <div class="description">Документация проекта с инструкциями по установке</div>
+        </div>
+        <div class="file-info">
+            <span>Полный код файла</span>
+            <span class="line-count">83 строк</span>
+        </div>
+        <div class="code-container">
+            <pre class="code markdown"># Веб-приложение для музыкальной группы
+
+Современное веб-приложение для музыкальной группы, разработанное с использованием React, TypeScript и современных веб-технологий.
+
+## Описание проекта
+
+Данное приложение представляет собой официальный сайт музыкальной группы с функциональностью для представления группы, их музыки, туров и покупки билетов.
+
+## Технологический стек
+
+- **React 18.3.1** - основная библиотека для создания пользовательского интерфейса
+- **TypeScript 5.5.3** - типизированный JavaScript для повышения надежности кода
+- **Vite 5.4.1** - современный инструмент сборки для быстрой разработки
+- **Tailwind CSS 3.4.11** - утилитарный CSS фреймворк для стилизации
+- **shadcn/ui** - набор переиспользуемых компонентов на основе Radix UI
+- **React Router DOM 6.26.2** - маршрутизация в приложении
+- **Supabase 2.49.6** - backend-as-a-service для базы данных
+
+## Установка и запуск
+
+### Требования
+- Node.js (версия 18 или выше)
+- npm или yarn
+
+### Шаги установки
+
+```bash
+# Клонирование репозитория
+git clone &lt;URL_РЕПОЗИТОРИЯ&gt;
+cd &lt;НАЗВАНИЕ_ПРОЕКТА&gt;
+
+# Установка зависимостей
+npm install
+
+# Запуск в режиме разработки
+npm run dev
+```
+
+### Доступные скрипты
+
+- `npm run dev` - запуск сервера разработки
+- `npm run build` - сборка проекта для продакшена
+- `npm run build:dev` - сборка проекта в режиме разработки
+- `npm run lint` - проверка кода с помощью ESLint
+- `npm run preview` - предварительный просмотр собранного проекта
+
+## Структура проекта
+
+```
+src/
+├── pages/          # Страницы приложения
+├── components/     # Переиспользуемые компоненты
+│   ├── ui/        # Базовые UI компоненты
+│   ├── layout/    # Компоненты макета
+│   └── home/      # Компоненты главной страницы
+├── lib/           # Утилиты и хелперы
+├── hooks/         # Кастомные React хуки
+└── integrations/  # Интеграции с API
+```
+
+## Основные функции
+
+- **Главная страница** - приветствие и навигация
+- **О группе** - биография и история группы
+- **Музыка** - альбомы, треки, аудиоплеер
+- **Туры** - расписание концертов
+- **Покупка билетов** - форма заказа с выбором места
+- **Контакты** - форма обратной связи
+
+## Особенности реализации
+
+- Компонентная архитектура React
+- Строгая типизация TypeScript
+- Адаптивный дизайн
+- Современные UI компоненты
+- Интеграция с backend сервисом
+- Оптимизированная производительность
+
+## Автор
+
+Разработано в рамках курсовой работы по веб-разработке.
+
+</pre>
+        </div>
+    </div>
+</body>
+</html>
